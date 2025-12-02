@@ -64,7 +64,6 @@ const mainItems = [
     href: "/analytics",
     icon: BarChart3,
   },
-  // Agar routes ready ho jaayen to inko bhi use kar sakta hai:
   {
     label: "Website Visitors",
     href: "/websitevisitors",
@@ -81,29 +80,35 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
+    // collapsible="icon" sidebar icon mode ke liye
     <Sidebar collapsible="icon">
+      {/* LOGO */}
       <SidebarHeader className="border-b px-3 py-3">
-        <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-500 text-white font-semibold text-lg">
+        <Link href="/dashboard" className="flex items-center gap-3 group">
+          <div
+            className={cn(
+              "flex items-center justify-center rounded-xl bg-teal-500 text-white font-semibold text-lg transition-all duration-300",
+              "h-9 w-9", // default size
+              "group-data-[collapsible=icon]:h-12 group-data-[collapsible=icon]:w-12 group-data-[collapsible=icon]:text-xl" // collapsed size
+            )}
+          >
             L
           </div>
-          <div className="flex flex-col">
-            <span className="text-base font-semibold tracking-tight">
-              Loopse
-            </span>
-            <span className="text-xs text-muted-foreground">
-              Email automation
-            </span>
-          </div>
+
+          {/* Hide title when collapsed */}
+          <span className="text-[20px] font-bold text-teal-500 tracking-tight group-data-[collapsible=icon]:hidden">
+            Loopse
+          </span>
         </Link>
       </SidebarHeader>
 
       <SidebarContent className="px-2 pt-2 pb-3">
         {/* MAIN SECTION */}
         <SidebarGroup>
-          <SidebarGroupLabel className="px-3 text-[11px] font-semibold tracking-[0.15em] text-muted-foreground">
+          <SidebarGroupLabel className="px-3 text-[11px] font-semibold tracking-[0.15em] text-muted-foreground group-data-[collapsible=icon]:hidden">
             MAIN
           </SidebarGroupLabel>
+
           <SidebarGroupContent>
             <SidebarMenu className="mt-1 space-y-1">
               {mainItems.map((item) => {
@@ -119,6 +124,8 @@ export function AppSidebar() {
                       asChild
                       className={cn(
                         "group relative flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-800 transition-colors duration-200",
+                        // icon mode me center ho jao
+                        "group-data-[collapsible=icon]:justify-center",
                         isActive &&
                           "bg-teal-50 text-teal-700 dark:bg-teal-900/40 dark:text-teal-100"
                       )}
@@ -130,19 +137,21 @@ export function AppSidebar() {
                         {/* LEFT: icon + label */}
                         <div className="flex items-center gap-3">
                           <Icon className="h-4 w-4 shrink-0" />
-                          <span>{item.label}</span>
+
+                          {/* collapse hone par label hide */}
+                          <span className="group-data-[collapsible=icon]:hidden">
+                            {item.label}
+                          </span>
                         </div>
 
-                        {/* RIGHT: active dot */}
-                        <div className="relative flex items-center justify-center">
-                          {/* main dot (scale + fade in) */}
+                        {/* RIGHT: active dot – icon mode me hide */}
+                        <div className="relative flex items-center justify-center group-data-[collapsible=icon]:hidden">
                           <span
                             className={cn(
                               "h-1.5 w-1.5 rounded-full bg-teal-500 transition-all duration-200 opacity-0 scale-0",
                               isActive && "opacity-100 scale-100"
                             )}
                           />
-                          {/* outer ping ring */}
                           {isActive && (
                             <span className="absolute h-4 w-4 rounded-full border border-teal-500/60 animate-ping" />
                           )}
@@ -156,8 +165,8 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* BILLING (placeholder) */}
-        <SidebarGroup className="mt-4">
+        {/* BILLING (HELP BOX) */}
+        <SidebarGroup className="mt-4 group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel className="px-3 text-[11px] font-semibold tracking-[0.15em] text-muted-foreground">
             BILLING
           </SidebarGroupLabel>
@@ -177,12 +186,11 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t px-3 py-2 text-xs text-muted-foreground">
-        {/* Yaha future me user info / version wagairah rakh sakta hai */}
+      <SidebarFooter className="border-t px-3 py-2 text-xs text-muted-foreground group-data-[collapsible=icon]:hidden">
         <span className="truncate">Logged in as Haris</span>
       </SidebarFooter>
 
-      {/* Collapsed rail for desktop */}
+      {/* icon-only rail */}
       <SidebarRail />
     </Sidebar>
   );
