@@ -31,8 +31,17 @@ function TopNav() {
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: sidebar + search */}
       <div className="flex items-center gap-3 flex-1">
-        
-        <Separator orientation="vertical" className="mr-2 hidden sm:block h-6" />
+
+        {/* 👉 Sidebar Trigger should be here */}
+        <SidebarTrigger className="-ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-muted">
+          <span className="text-lg leading-none">☰</span>
+        </SidebarTrigger>
+
+        <Separator 
+          orientation="vertical" 
+          className="mr-2 hidden sm:block h-6" 
+        />
+
         <div className="relative flex-1 max-w-2xl">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -44,7 +53,6 @@ function TopNav() {
 
       {/* Right: theme toggle + bell + avatar */}
       <div className="flex items-center gap-2">
-        {/* Theme toggle */}
         <Button
           variant="ghost"
           size="icon"
@@ -56,12 +64,10 @@ function TopNav() {
           <span className="sr-only">Toggle theme</span>
         </Button>
 
-        {/* Notifications */}
         <Button variant="ghost" size="icon" className="rounded-full">
           <Bell className="h-4 w-4" />
         </Button>
 
-        {/* Avatar */}
         <Avatar className="h-8 w-8 border border-primary">
           <AvatarImage src="" alt="User" />
           <AvatarFallback>H</AvatarFallback>
