@@ -11,17 +11,25 @@ import { Button } from "@/components/ui/button";
 import { Plus, Send, Search, Bell, Sun, Moon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useTheme } from "next-themes"; // ⭐ Theme Hook
+import { useTheme } from "next-themes";
 
 // 🔹 Updated Top Navigation
 function TopNav() {
-  const { theme, setTheme } = useTheme(); // ⭐ Needed for toggle
+  const { theme, setTheme } = useTheme();
 
   return (
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: sidebar + search */}
       <div className="flex items-center gap-3 flex-1">
-       
+        {/* 👉 Added Sidebar Trigger + Separator Here */}
+        <SidebarTrigger className="-ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-muted">
+          <span className="text-lg leading-none">☰</span>
+        </SidebarTrigger>
+
+        <Separator
+          orientation="vertical"
+          className="mr-2 hidden sm:block h-6"
+        />
 
         <div className="relative flex-1 max-w-2xl">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -38,13 +46,10 @@ function TopNav() {
         <Button
           variant="ghost"
           size="icon"
-          className="rounded-full relative"
+          className="rounded-md relative"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
-          {/* Light icon */}
           <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-
-          {/* Dark icon */}
           <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
@@ -75,7 +80,9 @@ export default function CampaignsPage() {
           {/* Page Header */}
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-3xl font-semibold tracking-tight">Campaigns</h1>
+              <h1 className="text-3xl font-semibold tracking-tight">
+                Campaigns
+              </h1>
               <p className="text-muted-foreground mt-1">
                 Manage your email campaigns
               </p>

@@ -9,14 +9,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-import {
-  Plus,
-  Users,
-  Search,
-  Bell,
-  Sun,
-  Moon,
-} from "lucide-react";
+import { Plus, Users, Search, Bell, Sun, Moon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useTheme } from "next-themes"; // ⭐ theme hook
@@ -29,14 +22,19 @@ function TopNav() {
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: Sidebar + Search */}
       <div className="flex items-center gap-3 flex-1">
-        <Separator orientation="vertical" className="hidden sm:block h-6" />
+        {/* 👉 Added Sidebar Trigger */}
+        <SidebarTrigger className="-ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-muted">
+          <span className="text-lg leading-none">☰</span>
+        </SidebarTrigger>
+
+        <Separator
+          orientation="vertical"
+          className="hidden sm:block h-6 mr-2"
+        />
 
         <div className="relative flex-1 max-w-2xl">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search leads..."
-            className="pl-9 rounded-full"
-          />
+          <Input placeholder="Search leads..." className="pl-9 rounded-full" />
         </div>
       </div>
 
@@ -74,7 +72,7 @@ export default function LeadListPage() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset className="w-full h-full overflow-x-hidden flex flex-col">
-        {/* 🔻 Breadcrumb hata ke TopNav lagaya */}
+        {/* 🔻 TopNav used */}
         <TopNav />
 
         {/* Content */}
@@ -82,7 +80,9 @@ export default function LeadListPage() {
           {/* Page Header */}
           <div className="flex items-start justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-semibold tracking-tight">Lead List</h1>
+              <h1 className="text-3xl font-semibold tracking-tight">
+                Lead List
+              </h1>
               <p className="text-muted-foreground mt-1">
                 Manage your leads and prospects
               </p>
@@ -97,10 +97,7 @@ export default function LeadListPage() {
           <div className="bg-background rounded-lg border">
             <div className="flex flex-col items-center justify-center py-24 px-4">
               <div className="mb-6">
-                <Users
-                  className="w-20 h-20 text-slate-400"
-                  strokeWidth={1.5}
-                />
+                <Users className="w-20 h-20 text-slate-400" strokeWidth={1.5} />
               </div>
               <h2 className="text-2xl font-semibold mb-2">No leads yet</h2>
               <p className="text-muted-foreground text-center max-w-md">

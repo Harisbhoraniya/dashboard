@@ -10,28 +10,30 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  TrendingUp,
-  BarChart3,
-  Search,
-  Sun,
-  Moon,
-  Bell,
-} from "lucide-react";
+import { TrendingUp, BarChart3, Search, Sun, Moon, Bell } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useTheme } from "next-themes"; // ⭐ NEW: theme hook
+import { useTheme } from "next-themes";
 
-// —— Top nav with dark/light toggle ——
+// —— Top nav with dark/light toggle + sidebar trigger —— //
 function TopNav() {
-  const { theme, setTheme } = useTheme(); // ⭐ NEW
+  const { theme, setTheme } = useTheme();
 
   return (
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
-      {/* Left: sidebar + search */}
+      {/* Left: sidebar trigger + search */}
       <div className="flex items-center gap-3 flex-1">
-        
+        {/* ☰ sidebar trigger */}
+        <SidebarTrigger className="-ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-muted">
+          <span className="text-lg leading-none">☰</span>
+        </SidebarTrigger>
+
+        <Separator
+          orientation="vertical"
+          className="mr-2 hidden sm:block h-6"
+        />
+
         <div className="relative flex-1 max-w-2xl">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -43,16 +45,14 @@ function TopNav() {
 
       {/* Right: theme toggle + bell + avatar */}
       <div className="flex items-center gap-2">
-        {/* 🌗 Dark / Light toggle */}
+        {/* Dark / Light toggle */}
         <Button
           variant="ghost"
           size="icon"
           className="rounded-full relative"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
-          {/* Light icon */}
           <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          {/* Dark icon */}
           <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
@@ -75,7 +75,7 @@ export default function Page() {
     <SidebarProvider>
       <AppSidebar />
 
-      <SidebarInset className="w-full  overflow-x-hidden flex flex-col bg-muted/40">
+      <SidebarInset className="w-full overflow-x-hidden flex flex-col bg-muted/40">
         <TopNav />
 
         {/* Content */}

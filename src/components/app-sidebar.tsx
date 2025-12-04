@@ -55,7 +55,7 @@ const billingItems = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { toggleSidebar, state } = useSidebar(); // 👈 state se pata chalega collapsed/expanded
+  const { toggleSidebar, state } = useSidebar();
 
   const isCollapsed = state === "collapsed";
 
@@ -66,40 +66,32 @@ export function AppSidebar() {
     >
       {/* HEADER */}
       <SidebarHeader className="px-4 py-3 border-b border-border">
-        {isCollapsed ? (
-          // ✅ Collapsed: sirf center me round toggle button
-          <div className="flex items-center justify-center">
-            <button
-              onClick={toggleSidebar}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground hover:bg-muted transition"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-          </div>
-        ) : (
-          // ✅ Expanded: L + Loopse + arrow
-          <div className="flex items-center justify-between gap-2">
-            <Link href="/dashboard" className="flex items-center gap-3">
-              {/* LOGO BOX */}
-              <div className="flex items-center justify-center rounded-xl bg-teal-500 text-white font-semibold text-lg h-10 w-10">
-                L
-              </div>
+        <div className="flex items-center justify-between gap-2">
+          {/* Logo + Name → icon mode me hide */}
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-3 group-data-[collapsible=icon]:hidden"
+          >
+            <div className="flex items-center justify-center rounded-xl bg-teal-500 text-white font-semibold text-lg h-10 w-10">
+              L
+            </div>
 
-              <span className="text-[21px] font-semibold text-teal-500 tracking-tight">
-                Loopse
-              </span>
-            </Link>
+            <span className="text-[21px] font-semibold text-teal-500 tracking-tight">
+              Loopse
+            </span>
+          </Link>
 
-            <button
-              onClick={toggleSidebar}
-              className="inline-flex h-8 w-8 items-center justify-center 
-  border border-border text-muted-foreground hover:bg-muted transition
-  rounded-md md:rounded-full"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-          </div>
-        )}
+          {/* Desktop collapse toggle (mobile pe hidden) */}
+          <button
+            onClick={toggleSidebar}
+            className={cn(
+              "hidden lg:inline-flex h-8 w-8 items-center justify-center border border-border text-muted-foreground hover:bg-muted transition rounded-full",
+              isCollapsed && "rotate-180"
+            )}
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+        </div>
       </SidebarHeader>
 
       <SidebarContent className="px-2 pt-3 pb-3">
@@ -122,7 +114,6 @@ export function AppSidebar() {
                       asChild
                       className={cn(
                         "group relative flex items-center gap-4 rounded-xl px-3 py-3 text-[15px] font-medium transition",
-                        // 👇 collapse me content (icon) center ho jayega
                         "group-data-[collapsible=icon]:justify-center",
                         isActive
                           ? "bg-gradient-to-r from-[#c9f7f3] to-[#e8fbff] dark:from-[#043f3e] dark:to-[#0b2d2d] text-teal-600 border border-teal-400/50"
@@ -131,7 +122,7 @@ export function AppSidebar() {
                     >
                       <Link
                         href={item.href}
-                        className="flex w-full items-center justify-between"
+                        className="flex w-full items-center justify-between group-data-[collapsible=icon]:justify-center"
                       >
                         <div className="flex items-center gap-4">
                           <Icon
@@ -142,13 +133,11 @@ export function AppSidebar() {
                                 : "text-muted-foreground"
                             )}
                           />
-                          {/* Label collapse me chhup jayega */}
-                          <span className=" font-normal text-[15px] group-data-[collapsible=icon]:hidden">
+                          <span className="font-normal text-[15px] group-data-[collapsible=icon]:hidden">
                             {item.label}
                           </span>
                         </div>
 
-                        {/* Dot bhi collapse me chhupa hua */}
                         {isActive && (
                           <span className="h-1.5 w-1.5 rounded-full bg-teal-500 group-data-[collapsible=icon]:hidden" />
                         )}
@@ -199,7 +188,9 @@ export function AppSidebar() {
                                 : "text-muted-foreground"
                             )}
                           />
-                          {item.label}
+                          <span className="font-normal text-[15px]">
+                            {item.label}
+                          </span>
                         </div>
 
                         {isActive && item.label === "AI Credits" && (
