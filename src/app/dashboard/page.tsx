@@ -23,25 +23,23 @@ import {
   Eye,
   BarChart3,
   Bot,
+  ChevronDown,
 } from "lucide-react";
 
 function TopNav() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
+    <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-6 border-b bg-background">
       {/* Left: sidebar + search */}
       <div className="flex items-center gap-3 flex-1">
-        <SidebarTrigger className="-ml-1" />
-        <Separator
-          orientation="vertical"
-          className="mr-2 hidden sm:block h-6"
-        />
-        <div className="relative flex-1 max-w-2xl">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        
+
+        <div className="relative flex-1 max-w-3xl">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search links, QR codes, analytics..."
-            className="pl-9 rounded-full"
+            className="pl-10 rounded-full bg-muted border-none shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
           />
         </div>
       </div>
@@ -66,7 +64,7 @@ function TopNav() {
         </Button>
 
         {/* Avatar */}
-        <Avatar className="h-8 w-8 border">
+        <Avatar className="h-8 w-8 border border-border">
           <AvatarImage src="" alt="User" />
           <AvatarFallback>H</AvatarFallback>
         </Avatar>
@@ -77,32 +75,66 @@ function TopNav() {
 
 export default function Page() {
   const stats = [
-    { label: "Total Links", icon: <Link2 />, color: "bg-sky-500" },
-    { label: "QR Codes", icon: <QrCode />, color: "bg-purple-500" },
-    { label: "Total Clicks", icon: <MousePointerClick />, color: "bg-green-500" },
-    { label: "Total Views", icon: <Eye />, color: "bg-orange-500" },
+    {
+      label: "Total Links",
+      icon: <Link2 className="h-5 w-5" />,
+      color: "bg-gradient-to-tr from-sky-400 to-sky-500",
+    },
+    {
+      label: "QR Codes",
+      icon: <QrCode className="h-5 w-5" />,
+      color: "bg-gradient-to-tr from-pink-400 to-purple-500",
+    },
+    {
+      label: "Total Clicks",
+      icon: <MousePointerClick className="h-5 w-5" />,
+      color: "bg-gradient-to-tr from-emerald-400 to-emerald-500",
+    },
+    {
+      label: "Total Views",
+      icon: <Eye className="h-5 w-5" />,
+      color: "bg-gradient-to-tr from-orange-400 to-orange-500",
+    },
   ];
 
   const actions = [
-    { label: "Create Link", icon: <Link2 />, color: "bg-sky-500" },
-    { label: "Create QR", icon: <QrCode />, color: "bg-purple-500" },
-    { label: "AI Assistant", icon: <Bot />, color: "bg-green-500" },
-    { label: "View Analytics", icon: <BarChart3 />, color: "bg-orange-500" },
+    {
+      label: "Create Link",
+      icon: <Link2 className="h-5 w-5" />,
+      color: "bg-gradient-to-tr from-sky-400 to-sky-500",
+    },
+    {
+      label: "Create QR",
+      icon: <QrCode className="h-5 w-5" />,
+      color: "bg-gradient-to-tr from-pink-400 to-purple-500",
+    },
+    {
+      label: "AI Assistant",
+      icon: <Bot className="h-5 w-5" />,
+      color: "bg-gradient-to-tr from-emerald-400 to-emerald-500",
+    },
+    {
+      label: "View Analytics",
+      icon: <BarChart3 className="h-5 w-5" />,
+      color: "bg-gradient-to-tr from-orange-400 to-orange-500",
+    },
   ];
 
   return (
     <SidebarProvider>
       <AppSidebar />
 
-      <SidebarInset className="flex flex-col bg-muted/40">
+      <SidebarInset className="flex min-h-screen flex-col bg-muted/40 dark:bg-background">
         <TopNav />
 
-        <main className="flex-1 p-4 md:p-6 space-y-6">
+        <main className="flex-1 px-6 py-5 space-y-6">
           {/* Header */}
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+              Dashboard
+            </h1>
             <p className="text-muted-foreground mt-1">
-              Welcome back! Here’s an overview of your email automation
+              Welcome back! Here&apos;s an overview of your email automation
               platform.
             </p>
           </div>
@@ -110,46 +142,57 @@ export default function Page() {
           {/* Stats Section */}
           <div className="grid gap-4 md:grid-cols-4">
             {stats.map((item, i) => (
-              <Card key={i} className="rounded-xl">
+              <Card
+                key={i}
+                className="rounded-2xl border border-border shadow-sm bg-card"
+              >
                 <CardContent className="p-4 space-y-3">
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-sm text-muted-foreground">
                         {item.label}
                       </p>
-                      <h2 className="text-2xl font-semibold">0</h2>
+                      <h2 className="text-2xl font-semibold mt-1 text-foreground">
+                        0
+                      </h2>
                     </div>
                     <div
-                      className={`h-10 w-10 rounded-xl flex items-center justify-center text-white ${item.color}`}
+                      className={`h-11 w-11 rounded-2xl flex items-center justify-center text-white ${item.color}`}
                     >
                       {item.icon}
                     </div>
                   </div>
-                  <p className="text-xs text-green-500">+0% from last month</p>
+                  <p className="text-xs text-emerald-500 dark:text-emerald-400">
+                    +0% from last month
+                  </p>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          {/* Quick Actions + Recent */}
-          <div className="grid gap-4 md:grid-cols-3">
+          {/* Quick Actions + Recent (50 / 50) */}
+          <div className="grid gap-4 md:grid-cols-2">
             {/* Quick Actions */}
-            <Card className="rounded-xl md:col-span-2">
-              <CardContent className="p-5 space-y-4">
-                <h2 className="font-semibold">Quick Actions</h2>
+            <Card className="rounded-2xl border border-border shadow-sm bg-card">
+              <CardContent className="p-6 space-y-4">
+                <h2 className="font-semibold text-lg text-foreground">
+                  Quick Actions
+                </h2>
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   {actions.map((action, i) => (
                     <button
                       key={i}
-                      className="flex items-center gap-3 p-4 border rounded-xl bg-background hover:shadow-sm transition"
+                      className="flex flex-col items-center justify-center gap-3 py-6 px-4 rounded-2xl border border-border bg-background hover:shadow-sm transition"
                     >
                       <div
-                        className={`h-10 w-10 flex items-center justify-center text-white rounded-xl ${action.color}`}
+                        className={`h-12 w-12 flex items-center justify-center text-white rounded-2xl ${action.color}`}
                       >
                         {action.icon}
                       </div>
-                      <span className="font-medium">{action.label}</span>
+                      <span className="font-medium text-sm text-foreground">
+                        {action.label}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -157,12 +200,47 @@ export default function Page() {
             </Card>
 
             {/* Recent Activity */}
-            <Card className="rounded-xl">
-              <CardContent className="p-5 flex items-center justify-center text-muted-foreground">
-                No recent activity
+            <Card className="rounded-2xl border border-border shadow-sm bg-card">
+              <CardContent className="p-6 h-full flex flex-col">
+                <h2 className="font-semibold text-lg mb-4 text-foreground">
+                  Recent Activity
+                </h2>
+                <div className="flex-1 flex items-center justify-center">
+                  <span className="text-muted-foreground text-sm">
+                    No recent activity
+                  </span>
+                </div>
               </CardContent>
             </Card>
           </div>
+
+          {/* Performance Overview */}
+          <Card className="rounded-2xl border border-border shadow-sm bg-card">
+            <CardContent className="p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="font-semibold text-lg text-foreground">
+                  Performance Overview
+                </h2>
+
+                <Button
+                  variant="outline"
+                  className="h-9 rounded-full border-border bg-background text-sm font-medium px-4 shadow-none hover:bg-muted"
+                >
+                  Last 7 days
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+
+              <div className="mt-3 rounded-2xl border-2 border-dashed border-border/60 dark:border-border h-64 flex items-center justify-center">
+                <div className="flex flex-col items-center gap-2">
+                  <BarChart3 className="h-8 w-8 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
+                    Chart will be displayed here
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </main>
       </SidebarInset>
     </SidebarProvider>

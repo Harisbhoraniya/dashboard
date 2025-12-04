@@ -46,8 +46,7 @@ function TopNav() {
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: sidebar + search */}
       <div className="flex items-center gap-3 flex-1">
-        <SidebarTrigger className="-ml-1" />
-        <Separator orientation="vertical" className="hidden sm:block h-6" />
+        
 
         <div className="relative flex-1 max-w-2xl">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -122,17 +121,17 @@ export default function LeadsGenerationPage() {
         <TopNav />
 
         {/* Content */}
-        <main className="flex-1 p-4 md:p-6 space-y-6 bg-muted/40">
+        <main className="flex-1 p-4 md:p-6 space-y-6 bg-muted/40 h-full">
           {/* Page Header */}
-          <div className="flex items-start justify-between">
+          <div className="flex items-start h-full justify-between">
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-3xl font-bold tracking-tight">
+                <h1 className="text-3xl font-semibold tracking-tight">
                   Email Accounts
                 </h1>
                 <Badge
                   variant="secondary"
-                  className="bg-teal-100 text-teal-700 hover:bg-teal-100"
+                  className="bg-teal-100  text-teal-700 hover:bg-teal-100"
                 >
                   Tutorial
                 </Badge>

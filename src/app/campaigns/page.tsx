@@ -21,8 +21,7 @@ function TopNav() {
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: sidebar + search */}
       <div className="flex items-center gap-3 flex-1">
-        <SidebarTrigger className="-ml-1" />
-        <Separator orientation="vertical" className="hidden sm:block h-6" />
+       
 
         <div className="relative flex-1 max-w-2xl">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -76,7 +75,7 @@ export default function CampaignsPage() {
           {/* Page Header */}
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Campaigns</h1>
+              <h1 className="text-3xl font-semibold tracking-tight">Campaigns</h1>
               <p className="text-muted-foreground mt-1">
                 Manage your email campaigns
               </p>

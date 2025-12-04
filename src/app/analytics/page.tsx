@@ -31,11 +31,7 @@ function TopNav() {
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: sidebar + search */}
       <div className="flex items-center gap-3 flex-1">
-        <SidebarTrigger className="-ml-1" />
-        <Separator
-          orientation="vertical"
-          className="mr-2 hidden sm:block h-6"
-        />
+        
         <div className="relative flex-1 max-w-2xl">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -79,14 +75,14 @@ export default function Page() {
     <SidebarProvider>
       <AppSidebar />
 
-      <SidebarInset className="w-full h-full overflow-x-hidden flex flex-col bg-muted/40">
+      <SidebarInset className="w-full  overflow-x-hidden flex flex-col bg-muted/40">
         <TopNav />
 
         {/* Content */}
-        <main className="flex-1 p-4 md:p-6 space-y-6">
+        <main className="flex-1 p-9 md:p-6 space-y-6">
           {/* Page title */}
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Analytics</h1>
+            <h1 className="text-3xl font-semibold tracking-tight">Analytics</h1>
             <p className="text-muted-foreground mt-1">
               Track performance and insights for your links
             </p>

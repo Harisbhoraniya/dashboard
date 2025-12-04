@@ -29,7 +29,6 @@ function TopNav() {
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: Sidebar + Search */}
       <div className="flex items-center gap-3 flex-1">
-        <SidebarTrigger className="-ml-1" />
         <Separator orientation="vertical" className="hidden sm:block h-6" />
 
         <div className="relative flex-1 max-w-2xl">
@@ -83,7 +82,7 @@ export default function LeadListPage() {
           {/* Page Header */}
           <div className="flex items-start justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Lead List</h1>
+              <h1 className="text-3xl font-semibold tracking-tight">Lead List</h1>
               <p className="text-muted-foreground mt-1">
                 Manage your leads and prospects
               </p>

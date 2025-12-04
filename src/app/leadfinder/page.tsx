@@ -41,7 +41,7 @@ function TopNav() {
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: sidebar + search */}
       <div className="flex items-center gap-3 flex-1">
-        <SidebarTrigger className="-ml-1" />
+        
         <Separator orientation="vertical" className="hidden sm:block h-6" />
 
         <div className="relative flex-1 max-w-2xl">
@@ -97,7 +97,7 @@ export default function LeadsGenerationPage() {
         <main className="flex-1 p-4 md:p-6 space-y-6 bg-muted/40">
           {/* Page title */}
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Lead Finder</h1>
+            <h1 className="text-3xl font-semibold tracking-tight">Lead Finder</h1>
             <p className="text-muted-foreground mt-1">
               Discover and connect with potential leads using advanced search.
             </p>

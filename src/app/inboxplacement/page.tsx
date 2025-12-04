@@ -32,7 +32,7 @@ function TopNav() {
     <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
       {/* Left: sidebar + search */}
       <div className="flex items-center gap-3 flex-1">
-        <SidebarTrigger className="-ml-1" />
+        
         <Separator
           orientation="vertical"
           className="mr-2 hidden sm:block h-6"
@@ -83,7 +83,7 @@ export default function InboxPlacementPage() {
         <main className="flex-1 p-4 md:p-6 space-y-6">
           {/* Page title */}
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">
+            <h1 className="text-3xl font-semibold tracking-tight">
               Inbox Placement
             </h1>
             <p className="text-muted-foreground mt-1">
