@@ -62,7 +62,7 @@ export function AppSidebar() {
   return (
     <Sidebar
       collapsible="icon"
-      className="border-r bg-background text-foreground"
+      className="border-r bg-background text-foreground w-72 sm:w-64 lg:w-65"
     >
       {/* HEADER */}
       <SidebarHeader className="px-4 py-3 border-b border-border">
@@ -94,7 +94,8 @@ export function AppSidebar() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="px-2 pt-3 pb-3">
+      {/* CONTENT */}
+      <SidebarContent className="px-2 pt-3 pb-3 overflow-y-auto">
         {/* MAIN SECTION */}
         <SidebarGroup>
           <SidebarGroupLabel className="px-3 text-[12px] font-semibold tracking-[0.15em] text-muted-foreground group-data-[collapsible=icon]:hidden">
@@ -113,7 +114,8 @@ export function AppSidebar() {
                     <SidebarMenuButton
                       asChild
                       className={cn(
-                        "group relative flex items-center gap-4 rounded-xl px-3 py-3 text-[15px] font-medium transition",
+                        // mobile pe bada font + padding
+                        "group relative flex items-center gap-4 rounded-xl px-4 py-3.5 text-[17px] lg:text-[15px] font-medium transition",
                         "group-data-[collapsible=icon]:justify-center",
                         isActive
                           ? "bg-gradient-to-r from-[#c9f7f3] to-[#e8fbff] dark:from-[#043f3e] dark:to-[#0b2d2d] text-teal-600 border border-teal-400/50"
@@ -127,13 +129,14 @@ export function AppSidebar() {
                         <div className="flex items-center gap-4">
                           <Icon
                             className={cn(
-                              "h-5 w-5",
+                              // icon bhi mobile pe thoda bada
+                              "h-6 w-6 lg:h-5 lg:w-5",
                               isActive
                                 ? "text-teal-500"
                                 : "text-muted-foreground"
                             )}
                           />
-                          <span className="font-normal text-[15px] group-data-[collapsible=icon]:hidden">
+                          <span className="font-normal text-[16px] lg:text-[15px] group-data-[collapsible=icon]:hidden">
                             {item.label}
                           </span>
                         </div>
@@ -167,7 +170,8 @@ export function AppSidebar() {
                     <SidebarMenuButton
                       asChild
                       className={cn(
-                        "group flex items-center justify-between rounded-xl px-3 py-3 font-medium text-[15px] transition",
+                        // yahan bhi mobile pe padding + font bada
+                        "group flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] lg:text-[14px] font-medium transition",
                         isActive && item.label === "AI Credits"
                           ? "bg-gradient-to-r from-[#c9f7f3] to-[#effbff] text-teal-600 border border-[#8ae1d8]"
                           : isActive
@@ -182,13 +186,13 @@ export function AppSidebar() {
                         <div className="flex items-center gap-4">
                           <Icon
                             className={cn(
-                              "h-5 w-5",
+                              "h-6 w-6 lg:h-5 lg:w-5",
                               isActive && item.label === "AI Credits"
                                 ? "text-teal-500"
                                 : "text-muted-foreground"
                             )}
                           />
-                          <span className="font-normal text-[15px]">
+                          <span className="font-normal text-[15px] lg:text-[14px]">
                             {item.label}
                           </span>
                         </div>
