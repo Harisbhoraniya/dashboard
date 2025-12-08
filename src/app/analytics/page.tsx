@@ -21,9 +21,9 @@ function TopNav() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
+    <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 sm:px-6 md:px-10 md:pl-14 border-b bg-background">
       {/* Left: sidebar trigger + search */}
-      <div className="flex items-center gap-3 flex-1">
+      <div className="flex items-center gap-2 flex-1">
         {/* ☰ sidebar trigger */}
         <SidebarTrigger className="-ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-muted">
           <span className="text-lg leading-none">☰</span>
@@ -79,7 +79,7 @@ export default function Page() {
         <TopNav />
 
         {/* Content */}
-        <main className="flex-1 p-9 md:p-6 space-y-6">
+        <main className="flex-1 px-6 py-5 space-y-6 sm:px-6 md:pl-12">
           {/* Page title */}
           <div>
             <h1 className="text-3xl font-semibold tracking-tight">Analytics</h1>

@@ -62,7 +62,7 @@ export function AppSidebar() {
   return (
     <Sidebar
       collapsible="icon"
-      className="border-r bg-background text-foreground w-72 sm:w-64 lg:w-65"
+      className="border-r bg-background text-foreground w-72 sm:w-64 lg:w-70"
     >
       {/* HEADER */}
       <SidebarHeader className="px-4 py-3 border-b border-border">

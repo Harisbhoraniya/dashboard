@@ -43,9 +43,9 @@ function TopNav() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 border-b bg-background">
-      {/* Left: sidebar + search */}
-      <div className="flex items-center gap-3 flex-1">
+    <header className="flex h-16 shrink-0 items-center justify-between gap-4 px-4 sm:px-6 md:px-10 md:pl-14 border-b bg-background">
+      {/* Left: sidebar trigger + search */}
+      <div className="flex items-center gap-2 flex-1">
         {/* 👉 Sidebar Trigger + Separator added here */}
         <SidebarTrigger className="-ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-muted">
           <span className="text-lg leading-none">☰</span>
@@ -129,7 +129,7 @@ export default function LeadsGenerationPage() {
         <TopNav />
 
         {/* Content */}
-        <main className="flex-1 p-4 md:p-6 space-y-6 bg-muted/40 h-full">
+        <main className="flex-1 px-6 py-5 space-y-6 sm:px-6 md:pl-12">
           {/* Page Header */}
           <div className="flex items-start h-full justify-between">
             <div>
